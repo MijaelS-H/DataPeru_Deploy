@@ -1,0 +1,46 @@
+---
+- name: create a folder for psql db backup file
+  ansible.builtin.file:
+    path: /home/{{ user_name }}/db_backup
+    state: directory
+    mode: '0755'
+
+# copy backup files into the folder
+- name: copy psql backup files into the folder
+  copy:
+    src: ../../files/postgresql/dbs/
+    dest: /home/{{ user_name }}/db_backup
+
+- name: grant permissions to psql user
+  postgresql_user:
+    name: "{{ postgresql_users[0].name }}"
+    role_attr_flags: CREATEDB
+  become: yes
+  become_user: postgres
+
+- name: ensure that postgres is reloaded
+  service:
+    name: "{{ postgresql_daemon }}"
+    state: restarted
+
+# import databases from files
+- name: import dumps to databases
+  shell: 
+     cmd: bzcat {{ item.user_backup_file }} | psql -d {{ item.name }} -U {{ postgresql_users[0].name }}
+     chdir: /home/{{ user_name }}/db_backup
+  loop: "{{ postgresql_databases }}"
+  when: item.user_backup_file is defined
+  environment:
+    - PGPASSWORD: "{{ postgresql_users[0].password }}"
+
+- name: remove permissions to psql user
+  postgresql_user:
+    name: "{{ postgresql_users[0].name }}"
+    role_attr_flags: NOCREATEDB
+  become: yes
+  become_user: postgres
+
+- name: ensure that postgres is reloaded
+  service:
+    name: "{{ postgresql_daemon }}"
+    state: restarted

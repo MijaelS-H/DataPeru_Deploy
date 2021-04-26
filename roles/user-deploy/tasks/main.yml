@@ -1,0 +1,22 @@
+---
+# install deploy user
+- name: create new user on the server
+  script: ./scripts/user-deploy.sh {{ user_name }} {{ user_pass }}
+
+# copy files into .ssh directory
+- name: copy files into new user .ssh directory
+  copy:
+    src: ../../files/user-deploy/{{ machine }}/
+    dest: /home/{{ user_name }}/.ssh
+
+# change permisions for ssh keys
+- name: change ssh keys permissions
+  file: path=/home/{{ user_name }}/.ssh owner={{user_name}} group={{user_name}} mode=0600 state=directory recurse=yes
+
+# change permisions for authorized_keys
+- name: change authorized_keys permissions
+  file: path=/home/{{ user_name }}/.ssh/authorized_keys owner={{user_name}} group={{user_name}} mode=0644 state=file
+
+# change permisions for .ssh folder
+- name: change .ssh folder permissions
+  file: path=/home/{{ user_name }}/.ssh owner={{user_name}} group={{user_name}} mode=0755 state=directory

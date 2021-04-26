@@ -1,0 +1,10 @@
+---
+
+# clone tesseract repo
+- name: clone ciren-tesseract repo
+  git:
+    repo: git@github.com:observatorio-ciren/ciren-tesseract.git
+    version: "{{git_branch}}"
+    dest: /home/{{user_name}}/ciren-tesseract
+    accept_hostkey: yes
+    key_file: /home/{{user_name}}/.ssh/id_obs_ciren_tesseract

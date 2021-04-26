@@ -1,0 +1,51 @@
+---
+# clickhouse version
+
+# install clickhouse requirements
+- name: prepare clickhouse instalation
+  script: ./scripts/prepare-clickhouse.sh
+
+# install latest version of Clickhouse
+- name: installing latest version of clickhouse
+  apt:
+    pkg:
+      - clickhouse-server
+      - clickhouse-client
+      - clickhouse-common-static
+  when: clickhouse_version is not defined
+
+# install especific version of Clickhouse
+- name: installing clickhouse v:{{clickhouse_version}}
+  apt:
+    pkg:
+      - clickhouse-server={{ clickhouse_version }}
+      - clickhouse-client={{ clickhouse_version }}
+      - clickhouse-common-static={{ clickhouse_version }}
+    force: True
+  when: clickhouse_version is defined
+
+- name: ensure that clickhouse is started
+  service:
+    name: clickhouse-server
+    state: started
+
+# copy users file
+- name: copy configuration files
+  copy:
+    src: ../../files/clickhouse/{{item}}
+    dest: /etc/clickhouse-server/{{item}}
+  loop:
+    - config.xml
+    - users.xml
+
+- name: ensure that clickhouse is reloaded
+  service:
+    name: clickhouse-server
+    state: restarted
+
+- name: Create ClickHouse databases
+  command: clickhouse-client --user {{lookup('env', 'CLICKHOUSE_USER')}} --password {{lookup('env', 'CLICKHOUSE_PASS')}} --query='CREATE DATABASE IF NOT EXISTS "{{ item }}";'
+  loop: "{{ clickhouse_databases | default([]) }}"
+  register: command_result
+  changed_when: command_result.rc == 0
+  failed_when: command_result.rc != 0 and command_result.rc != 82

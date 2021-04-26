@@ -1,0 +1,19 @@
+- name: deploy frontend server
+  hosts: devfrontend
+  remote_user: deploy
+  become: yes
+  become_user: root
+  vars_files:
+    - vars/fe-development.yaml
+
+  roles:
+    - user-deploy
+    - common
+    - nodejs
+    - nginx
+    - certbot
+    - geerlingguy.postgresql
+    - user.postgresql
+    - user-fe-repo
+    - pm2
+    - user-fe-build

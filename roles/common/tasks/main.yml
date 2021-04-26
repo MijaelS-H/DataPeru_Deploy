@@ -1,0 +1,28 @@
+---
+# update dependencies on linux
+- name: update dependencies of linux packages
+  apt:
+    update_cache: yes
+
+# install common packages
+- name: install common packages
+  apt:
+    pkg:
+    - apt-transport-https
+    - build-essential
+    - ca-certificates
+    - curl
+    - dirmngr
+    - git
+    - python3-dev
+    - python3-pip
+    - python3-venv
+    - python3-wheel
+    - wget
+
+# install common python packages
+- name: install common python packages
+  pip:
+    name:
+      - psycopg2-binary
+    executable: pip3

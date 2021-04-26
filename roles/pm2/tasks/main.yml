@@ -1,0 +1,23 @@
+---
+# install pm2 globally with npm
+- name: install pm2 (globally)
+  command:
+    cmd: npm install -g pm2
+
+# start pm2
+- name: start pm2
+  command:
+    cmd: pm2 startup
+
+# start pm2
+- name: setup pm2 startup script
+  command:
+    cmd: env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u {{ user_name}} --hp /home/{{ user_name}}
+
+# copy ecosystem.config.js file
+- name: copy ecosystem.config.js file
+  copy:
+    src: ../../files/pm2/{{ machine_type }}/ecosystem.config.js
+    dest: /home/{{ user_name }}/dataperu-site
+    owner: "{{user_name}}"
+    group: "{{user_name}}"

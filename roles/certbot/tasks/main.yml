@@ -1,0 +1,17 @@
+---
+# install certbot dependencies
+- name: install certbot dependencies
+  apt:
+    pkg:
+    - python3-acme
+    - python3-certbot
+    - python3-mock
+    - python3-openssl
+    - python3-pkg-resources
+    - python3-pyparsing
+    - python3-zope.interface
+
+# install certbot
+- name: install certbot
+  apt:
+    name: python3-certbot-nginx

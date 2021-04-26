@@ -1,0 +1,8 @@
+# listado de servidores a ser utilizados en el observatorio
+
+# listado de ips de servidores de backend
+#[]
+
+# listado de ips de servidores de frontend
+[devfrontend]
+34.71.19.198

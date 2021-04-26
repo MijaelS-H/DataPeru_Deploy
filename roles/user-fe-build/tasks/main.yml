@@ -1,0 +1,19 @@
+---
+- name: create known_host file
+  ansible.builtin.file:
+    path: /home/{{ user_name }}/.ssh/known_hosts
+    state: touch
+  become: yes
+  become_user: "{{ user_name }}"
+
+- name: Write the new ec2 instance host key to known hosts
+  shell: 
+    cmd: "ssh-keyscan github.com >> /home/{{ user_name }}/.ssh/known_hosts"
+
+# deploy frontend
+- name: deploy frontend
+  shell:
+    chdir: /home/{{ user_name }}/dataperu-site
+    cmd: yes | sh init.sh
+  become: yes
+  become_user: "{{ user_name }}"

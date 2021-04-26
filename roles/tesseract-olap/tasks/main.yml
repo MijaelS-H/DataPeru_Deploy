@@ -1,0 +1,22 @@
+---
+# install tesseract-olap
+- name: install tesseract-olap
+  script:
+    cmd: ./scripts/install-tesseract-olap.sh
+
+# copy tesseract-olap.service file
+- name: copy tesseract-olap.service file
+  copy:
+    src: ../../files/tesseract-olap/tesseract-olap.service
+    dest: /etc/systemd/system/tesseract-olap.service
+
+# restart daemon-reload
+- name: restart daemon-reload
+  command:
+    cmd: systemctl daemon-reload
+
+# restart daemon-reload
+- name: enable tesseract-olap service
+  service:
+    name: tesseract-olap.service
+    state: started

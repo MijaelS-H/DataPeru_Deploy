@@ -1,0 +1,52 @@
+---
+# install nginx
+- name: install nginx
+  apt:
+    name: nginx
+
+# remove default nginx config
+- name: remove default nginx config
+  script: ./scripts/remove-nginx-default.sh
+
+# copy new nginx config files
+- name: copy new nginx config files
+  copy:
+    src: ../../files/nginx/{{ machine }}/{{ machine_type }}/
+    dest: /etc/nginx/sites-available
+
+# find all files in /etc/nginx/sites-available
+- name: find all files in /etc/nginx/sites-available
+  find:
+    paths: /etc/nginx/sites-available
+  register: find
+
+# create symbolic link between sites-available and sites-enabled
+- name: create symbolic link between sites-available and sites-enabled
+  file:
+    src: "{{ item.path }}"
+    path: "/etc/nginx/sites-enabled/{{ item.path | basename }}"
+    state: link
+  with_items: "{{ find.files }}"
+
+# create necesary cache folders
+- name: create necesary cache folders
+  file:
+    path: /home/{{ user_name }}/caches
+    state: directory
+
+# create public_html folder
+- name: create public_html folder
+  file:
+    path: /home/{{ user_name }}/public_html
+    state: directory
+
+# verify nginx syntax
+- name: verify nginx syntax
+  command:
+    cmd: nginx -t
+
+# restart nginx service
+- name: restart nginx service
+  systemd:
+    name: nginx
+    state: restarted

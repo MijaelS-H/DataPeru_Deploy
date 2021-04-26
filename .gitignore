@@ -1,0 +1,9 @@
+#important files
+*.gcs.json
+
+#.env file
+.env
+
+#folders
+_temp/
+files/

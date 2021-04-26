@@ -1,0 +1,10 @@
+---
+# add lts version of node to available downloads
+- name: prepare instalation for nodejs v12.x
+  script: ./roles/nodejs/scripts/prepare-nodejs.sh
+
+# install nodejs lts v12.x
+- name: install nodejs
+  apt:
+    name: nodejs
+    state: latest
