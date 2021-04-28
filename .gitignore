@@ -7,3 +7,6 @@
 #folders
 _temp/
 files/
+
+#so files
+.DS_Store
