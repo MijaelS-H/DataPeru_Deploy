@@ -22,7 +22,7 @@
     lc_ctype: "C.UTF-8"
     # added by miself for user.postgresql role
     # these are not in the original greerlingguy.postgresql role
-    user_backup_file: "DATAPERU-CMS-2021-04-26-21-55-dataperu-datawheel.sql.bz2"
+    user_backup_file: "DATAPERU-CMS-2021-05-13-04-00-dataperu-datawheel.sql"
 - postgresql_users:
   - name: "{{ lookup('env', 'PSQL_USER') }}"
     password: "{{ lookup('env', 'PSQL_PASS') }}"
