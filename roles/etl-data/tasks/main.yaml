@@ -1,0 +1,14 @@
+---
+
+# copy files into datasets directory
+- name: copy files into datasets directory
+  copy:
+    src: ../../files/etl/datasets.zip
+    dest: /home/{{ user_name }}/
+
+# unzip datasets.zip file to datasets folder
+
+- name: unzip datasets.zip file to datasets folder
+  command:
+    cmd: unzip /home/{{ user_name }}/datasets.zip
+

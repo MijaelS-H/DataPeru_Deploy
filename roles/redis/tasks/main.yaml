@@ -1,0 +1,18 @@
+---
+
+# install redis
+- name: install redis-server
+  apt:
+    name: redis-server
+
+# copy new redis config files
+- name: copy new redis config files
+  copy:
+    src: ../../files/redis/redis.conf
+    dest: /etc/redis/
+
+# restart redis service
+- name: restart redis service
+  systemd:
+    name: redis-server
+    state: restarted

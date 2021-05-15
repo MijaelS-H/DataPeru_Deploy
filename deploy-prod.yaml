@@ -1,3 +1,24 @@
+---
+- name: deploy backend server
+  hosts: itpbackend
+  remote_user: sadmin
+  become: yes
+  become_user: root
+  vars_files:
+    - vars/be-production.yaml
+
+  roles:
+    - user-deploy
+    - common
+    - nodejs
+    - clickhouse
+    - nginx
+    - redis
+    - user-be-repo
+    - etl-data
+    - etl-pipeline
+    - tesseract-olap
+
 - name: deploy frontend server
   hosts: itpfrontend
   remote_user: sadmin

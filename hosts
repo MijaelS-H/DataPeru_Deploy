@@ -10,5 +10,5 @@
 [itpfrontend]
 192.168.1.134
 
-#[itpbackend]
-#192.168.1.137
+[itpbackend]
+192.168.1.135 ansible_connection=ssh ansible_user="{{ lookup('env', 'USER_NAME') }}" ansible_password="{{ lookup('env', 'USER_PASS_BACKEND') }}"

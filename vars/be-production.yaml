@@ -1,0 +1,18 @@
+---
+# python interpreter
+- ansible_python_interpreter: "/usr/bin/python3"
+
+# machine settings
+- git_branch: master
+- machine: backend
+- machine_type: production
+
+# unix username
+- user_name: "{{ lookup('env', 'USER_NAME') }}"
+- user_pass: "{{ lookup('env', 'USER_PASS_BACKEND') }}"
+- ansible_sudo_pass: "{{user_pass}}"
+
+# clickhouse variables
+- clickhouse_version: "20.11.4.13"
+- clickhouse_databases:
+  - "dataperuv3"
