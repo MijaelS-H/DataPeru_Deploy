@@ -14,7 +14,18 @@
     - ca-certificates
     - curl
     - dirmngr
+    - fonts-liberation
     - git
+    - libappindicator3-1
+    - libasound2
+    - libatk-bridge2.0-0
+    - libcups2
+    - libgbm1
+    - libgcc1
+    - libnss3
+    - libx11-xcb1
+    - libxkbcommon.so.0
+    - libxss1
     - python3.7-dev
     - python3-pip
     - python3.7-venv
@@ -22,6 +33,7 @@
     - unzip
     - virtualenv
     - wget
+    - xdg-utils
 
 # install common python packages
 - name: install common python packages
