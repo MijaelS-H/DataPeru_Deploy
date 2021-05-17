@@ -1,12 +1,4 @@
-# listado de servidores a ser utilizados en el proceso de deploy
-
-# listado de ips de servidores de backend
-#[]
-
-# listado de ips de servidores de frontend
-[devfrontend]
-34.71.19.198
-
+# Listado de servidores a ser utilizados
 [itpfrontend]
 192.168.1.134
 

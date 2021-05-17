@@ -20,9 +20,9 @@
     owner: "{{lookup('env', 'PSQL_USER')}}"
     lc_collate: "C.UTF-8"
     lc_ctype: "C.UTF-8"
-    # added by miself for user.postgresql role
+    # added by myself for user.postgresql role
     # these are not in the original greerlingguy.postgresql role
-    user_backup_file: "DATAPERU-CMS-2021-05-13-04-00-dataperu-datawheel.sql"
+    user_backup_file: "DATAPERU-CMS-2021-05-17-04-00-dataperu-datawheel.sql.bz2"
 - postgresql_users:
   - name: "{{ lookup('env', 'PSQL_USER') }}"
     password: "{{ lookup('env', 'PSQL_PASS') }}"
