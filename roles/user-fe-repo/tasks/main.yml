@@ -1,5 +1,5 @@
 ---
-# install deploy user
+# clone dataperu-site repo
 - name: clone dataperu-site repo
   ansible.builtin.git:
     repo: git@github.com:dataperu/dataperu-site.git
@@ -7,6 +7,8 @@
     dest: /home/{{user_name}}/dataperu-site
     accept_hostkey: yes
     key_file: /home/{{user_name}}/.ssh/id_dataperu_frontend
+  become: yes
+  become_user: "{{ user_name }}"
 
 - name: change dataperu-site repo owner
   ansible.builtin.file:

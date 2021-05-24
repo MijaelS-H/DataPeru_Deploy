@@ -10,6 +10,7 @@
 # unix username
 - user_name: "{{ lookup('env', 'USER_NAME') }}"
 - user_pass: "{{ lookup('env', 'USER_PASS') }}"
+- ansible_sudo_pass: "{{user_pass}}"
 
 # server pass
 - ansible_become_pass: "{{ lookup('env', 'SERVER_PASS') }}"

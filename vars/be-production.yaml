@@ -12,6 +12,9 @@
 - user_pass: "{{ lookup('env', 'USER_PASS_BACKEND') }}"
 - ansible_sudo_pass: "{{user_pass}}"
 
+# server pass
+- ansible_become_pass: "{{ lookup('env', 'SERVER_PASS') }}"
+
 # clickhouse variables
 - clickhouse_version: "20.11.4.13"
 - clickhouse_databases:

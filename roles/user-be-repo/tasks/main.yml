@@ -8,6 +8,8 @@
     dest: /home/{{user_name}}/dataperu-tesseract
     accept_hostkey: yes
     key_file: /home/{{user_name}}/.ssh/id_dataperu_tesseract
+  become: yes
+  become_user: "{{ user_name }}"
 
 # clone etl repo
 - name: clone dataperu-etl repo
@@ -17,3 +19,5 @@
     dest: /home/{{user_name}}/dataperu-etl
     accept_hostkey: yes
     key_file: /home/{{user_name}}/.ssh/id_dataperu_etl
+  become: yes
+  become_user: "{{ user_name }}"
