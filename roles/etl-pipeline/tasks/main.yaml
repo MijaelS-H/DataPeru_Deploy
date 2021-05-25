@@ -6,7 +6,6 @@
     chdir: /home/{{ user_name }}/dataperu-etl
     cmd: virtualenv -p python3.7 venv
 
-
 # install python dependencies for etl process
 - name: install python dependencies for etl process
   pip:

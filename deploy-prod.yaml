@@ -38,3 +38,5 @@
     - user-fe-repo
     - pm2
     - user-fe-build
+    - user-fe-venv
+    - bytepark.cronjob

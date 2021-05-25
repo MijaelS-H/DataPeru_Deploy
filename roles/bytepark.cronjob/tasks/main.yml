@@ -1,0 +1,26 @@
+---
+- name: Write Cronjobs
+  cron:
+    name: "{{ item.name }}"
+    minute: "{{ item.minute | default('*') }}"
+    hour: "{{ item.hour | default('*') }}"
+    day: "{{ item.day | default('*') }}"
+    month: "{{ item.month | default('*') }}"
+    weekday: "{{ item.weekday | default('*') }}"
+    job: "{{ item.job }}"
+    state: "{{ item.state | default('present') }}"
+    user: "{{ item.user | default('root') }}"
+  when: item.special_time is not defined
+  with_items: 
+    - "{{ cronjobs }}"
+
+- name: Write special time cronjobs
+  cron:
+    name: "{{ item.name }}"
+    job: "{{ item.job }}"
+    special_time: "{{ item.special_time }}"
+    state: "{{ item.state | default('present') }}"
+    user: "{{ item.user | default('root') }}"
+  when: item.special_time is defined
+  with_items: 
+    - "{{ cronjobs }}"

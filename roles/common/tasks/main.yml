@@ -4,6 +4,11 @@
   apt:
     update_cache: yes
 
+# add python3 repository
+- name: add python3 repository
+  ansible.builtin.apt_repository:
+    repo: ppa:deadsnakes/ppa
+
 # install common packages
 - name: install common packages
   apt:
@@ -24,7 +29,6 @@
     - libgcc1
     - libnss3
     - libx11-xcb1
-    - libxkbcommon.so.0
     - libxss1
     - python3.7-dev
     - python3-pip
