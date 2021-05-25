@@ -18,6 +18,7 @@
     - etl-data
     - etl-pipeline
     - tesseract-olap
+    - bytepark.cronjob
 
 - name: deploy frontend server
   hosts: itpfrontend

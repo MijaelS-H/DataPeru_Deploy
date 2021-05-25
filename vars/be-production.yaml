@@ -19,3 +19,33 @@
 - clickhouse_version: "20.11.4.13"
 - clickhouse_databases:
   - "dataperuv3"
+
+# cronjobs
+- cronjobs:
+  - name: 'Enable MEF pipeline execution cronjob'
+    user: 'sadmin'
+    state: 'present'
+    minute: '0'
+    hour: '2'
+    day: '1'
+    weekday: '*'
+    month: '*'
+    job: 'cd /home/sadmin/dataperu-etl && /home/sadmin/dataperu-site/venv/bin/python3 -m etl.presupuesto.__init__ ../datasets >> /home/sadmin/cron_logs/cron.log 2>&1'
+  - name: 'Enable INFOCULTURA pipeline execution cronjob'
+    user: 'sadmin'
+    state: 'present'
+    minute: '0'
+    hour: '1'
+    day: '1'
+    weekday: '*'
+    month: '*'
+    job: 'cd /home/sadmin/dataperu-etl && /home/sadmin/dataperu-site/venv/bin/python3 -m etl.socios.cultura.infocultura.__init__ ../datasets >> /home/sadmin/cron_logs/cron.log 2>&1'
+  - name: 'Enable redis-cli cache clean'
+    user: 'sadmin'
+    state: 'present'
+    minute: '0'
+    hour: '8'
+    day: '1'
+    weekday: '*'
+    month: '*'
+    job: '/user/bin/redis-cli FLUSHALL >> /home/sadmin/cron_logs/cron.log 2>&1'
