@@ -14,6 +14,8 @@
 
 # execute pipelines
 - name: execute pipelines
+  async: 21600
+  poll: 1800
   shell:
     chdir: /home/{{ user_name }}/dataperu-etl
     cmd: . /home/{{ user_name }}/dataperu-etl/venv/bin/activate && python -m etl.__init__ ../datasets

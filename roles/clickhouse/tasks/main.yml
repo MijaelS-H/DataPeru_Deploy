@@ -29,21 +29,12 @@
     name: clickhouse-server
     state: started
 
-# copy users file
-#- name: copy configuration files
-#  copy:
-#    src: ../../files/clickhouse/{{item}}
-#    dest: /etc/clickhouse-server/{{item}}
-#  loop:
-#    - config.xml
-#    - users.xml
-
 - name: ensure that clickhouse is reloaded
   service:
     name: clickhouse-server
     state: restarted
 
-- name: Create ClickHouse databases
+- name: create clickhouse databases
   command: clickhouse-client --user {{lookup('env', 'CLICKHOUSE_USERNAME')}} --query='CREATE DATABASE IF NOT EXISTS "{{ item }}";'
   loop: "{{ clickhouse_databases | default([]) }}"
   register: command_result
