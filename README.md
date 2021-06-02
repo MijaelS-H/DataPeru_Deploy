@@ -18,7 +18,7 @@ Recopilación de las variables a ser utilizadas en los múltiples roles a ejecut
 
 ### .gitignore
 
-Archivo git que permite establecer rutas de archivos o extensiones de archivos no deseadas, las cuales son excluídas del proceso de gestión de cambios dentro del repositorio.
+Archivo git que permite establecer rutas de archivos o extensiones de archivos no deseadas, las cuales son excluidas del proceso de gestión de cambios dentro del repositorio.
 
 ### deploy-prod.yaml
 
