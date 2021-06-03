@@ -59,6 +59,11 @@ El presente script desarrollado responde a la configuración de un servidor de b
 
 Para el sitio ITP Producción se ha automatizado las instalación de dependencias claves para el funcionamiento del proyecto, la implementación de scripts de ingestión de datos y creación de builds para el frontend a través de la aplicación de Ansible, cuya configuración y requerimientos se encuentran ya configurados en el presente repositorio.
 
+Para el correcto funcionamiento del script, es necesario [instalar](https://galaxy.ansible.com/docs/using/installing.html#installing-multiple-roles-from-a-file) las dependencias requeridas por ansible, las cuales se encuentran en el archivo `requirements.yml` y se instalan ejecutando el siguiente comando:
+```
+ansible-galaxy install -r requirements.yml
+```
+
 ### Instalando los paquetes necesarios
 
 Ansible posee una [documentacion](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) bastante extensa para la instalación de la libreria en variados sistemas operativos. Recomendamos seguir la guía correspondiente a su sistema operativo para evitar problemas de instalación.
