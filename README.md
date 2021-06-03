@@ -65,7 +65,7 @@ Ansible posee una [documentacion](https://docs.ansible.com/ansible/latest/instal
 
 ### Descarga de Archivos Privados
 
-Previo a la ejecución del script de ansible, es necesario descargar los archivos requeridos, los cuales se encuentran actualmente en el archivo [files.zip](https://drive.google.com/file/d/14fASnf-E2TD0-PpgI18jJ8yWCJbPdgOm/view?usp=sharing). Estos archivos poseen configuraciones de paquetes, servicios y documentos privados que no pueden ser almacenados al igual que el resto del codigo en GitHub por temas de seguridad. Luego de descargar el archivo .zip, este debe ser descomprimido dentro de la carpeta `./dataperu-deploy/files`.
+Previo a la ejecución del script de ansible, es necesario descargar los archivos requeridos, los cuales se encuentran actualmente en el archivo [files.zip](https://drive.google.com/file/d/1N5NrkH8uZy3f93u0BfyB8XtChglePr6I/view?usp=sharing). Estos archivos poseen configuraciones de paquetes, servicios y documentos privados que no pueden ser almacenados al igual que el resto del codigo en GitHub por temas de seguridad. Luego de descargar el archivo .zip, este debe ser descomprimido dentro de la carpeta `./dataperu-deploy/files`.
 
 ## Variables de entorno requeridas
 
