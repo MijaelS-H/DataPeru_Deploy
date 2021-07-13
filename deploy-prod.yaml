@@ -1,24 +1,24 @@
 ---
-#- name: deploy backend server
-#  hosts: itpbackend
-#  remote_user: sadmin
-#  become: yes
-#  become_user: root
-#  vars_files:
-#    - vars/be-production.yaml
-# 
-#  roles:
-#    - user-deploy
-#    - common
-#    - nodejs
-#    - clickhouse
-#    - nginx
-#    - redis
-#    - user-be-repo
-#    - etl-data
-#    - etl-pipeline
-#    - tesseract-olap
-#    - bytepark.cronjob
+- name: deploy backend server
+  hosts: itpbackend
+  remote_user: sadmin
+  become: yes
+  become_user: root
+  vars_files:
+    - vars/be-production.yaml
+ 
+  roles:
+    - user-deploy
+    - common
+    - nodejs
+    - clickhouse
+    - nginx
+    - redis
+    - user-be-repo
+    - etl-data
+    - etl-pipeline
+    - tesseract-olap
+    - bytepark.cronjob
 
 - name: deploy frontend server
   hosts: itpfrontend
@@ -29,15 +29,15 @@
     - vars/fe-production.yaml
 
   roles:
-    #- user-deploy
-    #- common
-    #- nodejs
-    #- nginx
-    #- certbot
+    - user-deploy
+    - common
+    - nodejs
+    - nginx
+    - certbot
     - geerlingguy.postgresql
     - user.postgresql
-    #- user-fe-repo
-    #- pm2
-    #- user-fe-build
-    #- user-fe-venv
-    #- bytepark.cronjob
+    - user-fe-repo
+    - pm2
+    - user-fe-build
+    - user-fe-venv
+    - bytepark.cronjob
