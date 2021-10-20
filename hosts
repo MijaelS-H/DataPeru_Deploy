@@ -4,3 +4,9 @@
 
 [itpbackend]
 192.168.1.135 ansible_connection=ssh ansible_user="{{ lookup('env', 'USER_NAME') }}" ansible_password="{{ lookup('env', 'USER_PASS_BACKEND') }}"
+
+[itpfrontend-dev]
+192.168.1.144 ansible_connection=ssh ansible_user="{{ lookup('env', 'USER_NAME') }}" ansible_password="{{ lookup('env', 'USER_PASS_FRONTEND') }}"
+
+[itpbackend-dev]
+192.168.1.145 ansible_connection=ssh ansible_user="{{ lookup('env', 'USER_NAME') }}" ansible_password="{{ lookup('env', 'USER_PASS_BACKEND') }}"

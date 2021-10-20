@@ -33,12 +33,12 @@
   environment:
     - PGPASSWORD: "{{ postgresql_users[0].password }}"
 
-- name: remove permissions to psql user
-  postgresql_user:
-    name: "{{ postgresql_users[0].name }}"
-    role_attr_flags: NOCREATEDB
-  become: yes
-  become_user: postgres
+#- name: remove permissions to psql user
+#  postgresql_user:
+#    name: "{{ postgresql_users[0].name }}"
+#    role_attr_flags: NOCREATEDB
+#  become: yes
+#  become_user: postgres
 
 - name: ensure that postgres is reloaded
   service:

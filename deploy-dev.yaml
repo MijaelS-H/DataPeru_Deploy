@@ -1,0 +1,41 @@
+---
+- name: deploy backend server
+  hosts: itpbackend-dev
+  remote_user: sadmin
+  become: yes
+  become_user: root
+  vars_files:
+    - vars/be-development.yaml
+ 
+  roles:
+    - user-deploy
+    - common
+    - nodejs
+    - clickhouse
+    - nginx
+    - redis
+    - user-be-repo
+    - etl-data
+    - etl-pipeline
+    - tesseract-olap
+
+- name: deploy frontend server
+  hosts: itpfrontend-dev
+  remote_user: sadmin
+  become: yes
+  become_user: root
+  vars_files:
+    - vars/fe-development.yaml
+
+  roles:
+    - user-deploy
+    - common
+    - nodejs
+    - nginx
+    - certbot
+    - geerlingguy.postgresql
+    - user.postgresql
+    - user-fe-repo
+    - pm2
+    - user-fe-build
+    - user-fe-venv
